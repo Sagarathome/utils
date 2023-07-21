@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-
+console.log("hello")
 export default function TextForm(props) {
     const handledupclick = () => {
         let newtext = text.toUpperCase()
@@ -38,7 +38,9 @@ export default function TextForm(props) {
         text.select()
         navigator.clipboard.writeText(text.value)
         props.showAlert("Text is copied", "success")
+
     }
+
 
 
     const [text, settext] = useState("")
@@ -49,16 +51,16 @@ export default function TextForm(props) {
                 <div className="form-group">
                     <textarea className="form-control" value={text} style={{ backgroundColor: props.mode === 'dark' ? "grey " : "white", color: props.mode === 'light' ? "black" : "white", cursorColor: props.mode === 'light' ? "black" : "white" }} onChange={handledonchange} id="mybox" rows="8"></textarea>
                 </div>
-                <button className="btn btn-primary mx-1" onClick={handledupclick} >Convert to uppercase </button>
-                <button className="btn btn-primary mx-1" onClick={handledloclick} >Convert to Lowercase </button>
-                <button className="btn btn-primary mx-1" onClick={clearclick} >Clearall </button>
-                <button className="btn btn-primary mx-1" onClick={copytext} >Copy to Clipboard </button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handledupclick} >Convert to uppercase </button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handledloclick} >Convert to Lowercase </button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={clearclick} >Clearall </button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={copytext} >Copy to Clipboard </button>
             </div>
 
             <div className="container">
                 <h1 style={{ color: props.mode === 'dark' ? "white" : "black" }}>Your Text summary</h1>
-                <p style={{ color: props.mode === 'light' ? "black" : "white" }}>{text.split(" ").length} words and {text.length} charaters</p>
-                <p style={{ color: props.mode === 'light' ? "black" : "white" }}>{0.008 * text.split(" ").length} Minutes read</p>
+                <p style={{ color: props.mode === 'light' ? "black" : "white" }}>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} charaters</p>
+                <p style={{ color: props.mode === 'light' ? "black" : "white" }}>{0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} Minutes read</p>
                 <h2 style={{ color: props.mode === 'light' ? "black" : "white" }}>Preview</h2>
                 <p style={{ color: props.mode === 'light' ? "black" : "white" }}>{text.length>0?text:"Enter something in above box" }</p>
 

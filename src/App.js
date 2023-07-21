@@ -4,8 +4,8 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import { useState } from 'react';
 import Alert from './components/Alert';
-// import About from './components/About';
-// import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import About from './components/About';
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 
 
 
@@ -40,52 +40,28 @@ function App() {
 
     }
   }
-  const darkmode2 = () => {
-    if (mode === 'light') {
-      setmode('dark')
-      document.body.style.backgroundColor = "#1f0b0b"
-      showAlert("Dark mode enable", "success")
-    } else {
-      setmode('light')
 
-      document.body.style.backgroundColor = "white"
-      showAlert("Light mode enable", "success")
-
-    }
-  }
-  const darkmode3 = () => {
-    if (mode === 'light') {
-      setmode('dark')
-      document.body.style.backgroundColor = "#370f28"
-      showAlert("Dark mode enable", "success")
-    } else {
-      setmode('light')
-
-      document.body.style.backgroundColor = "white"
-      showAlert("Light mode enable", "success")
-
-    }
-  }
+ 
   return (
     <>
       
 
 
-        {/* <BrowserRouter> */}
-      <Navbar title="TextUtils" about="About us" mode={mode} togglemode={togglemode} darkmode2={darkmode2} darkmode3={darkmode3} />
+        <BrowserRouter>
+      <Navbar title="TextUtils" about="About us" mode={mode} togglemode={togglemode}  />
       <Alert alert={alert} />
-              <div className="container my-4" >
-        {<TextForm heading="Enter your Text Below" mode={mode} showAlert={showAlert} />}
-          {/* <Routes > */}
-              {/* <Route path="/about" element={<About />} /> */}
-              {/* <Route path="/" element={<TextForm heading="Enter your Text Below" mode={mode} showAlert={showAlert} />}> */}
+              <div className="container my-4 text-center" >
+        {/* {<TextForm heading="Enter your Text Below" mode={mode} showAlert={showAlert} />} */}
+          <Routes >
+              <Route path="/about" element={<About mode={mode} />} />
+              <Route path="/" element={<TextForm heading="Enter your Text Below" mode={mode} showAlert={showAlert} />}>
               
               {/* <Route path="contact" element={<Contact />} /> */}
               {/* <Route path="*" element={<NoPage />} /> */}
-            {/* </Route> */}
-          {/* </Routes> */}
+            </Route>
+          </Routes>
            </div>
-      {/* </BrowserRouter> */}
+      </BrowserRouter>
 
     </>
   );
